@@ -1,0 +1,35 @@
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  </style>
+<h1>Transactions of <%= user.username %></h1>
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Total Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% result.map(item => { %>
+    <tr>
+      <td><%= item.category %></td>
+      <td><%= item.total.toFixed(2) %></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+<a href="/transaction">Back to Transactions</a>
