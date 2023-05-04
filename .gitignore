@@ -133,3 +133,5 @@ node_modules/
 
 #package lock
 PA04/firstapp/package-lock.json
+
+.env

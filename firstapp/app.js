@@ -9,7 +9,9 @@ const toDoRouter = require('./routes/todo');
 const weatherRouter = require('./routes/weather');
 const transactionRouter = require('./routes/transaction');
 const summaryRouter = require('./routes/summary');
+const GPTRouter = require('./routes/gpt');
 const User = require('./models/User');
+
 
 /* **************************************** */
 /*  Connecting to a Mongo Database Server   */
@@ -111,6 +113,7 @@ app.use(toDoRouter);
 app.use(weatherRouter);
 app.use(transactionRouter);
 app.use(summaryRouter);
+app.use(GPTRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

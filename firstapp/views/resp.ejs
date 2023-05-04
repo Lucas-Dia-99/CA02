@@ -1,0 +1,18 @@
+<div>
+    <h1> Response for</h1>
+    <h2> <%= prompt %></h2>
+    
+    <ul class="list-group">
+      <% weather.forEach(item => { %>
+           <li class="list-group-item">
+            <%= item.name %><br>
+            <%= item.shortForecast %><br>
+            <%= item.detailedForecast %><br>
+            <!--
+             <%= JSON.stringify(item,null,5) %>
+             -->
+           </li>
+          <br>
+      <% }) %>
+      
+</div>
