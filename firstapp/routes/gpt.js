@@ -11,20 +11,18 @@ const configuration = new Configuration({
 });
 const axios = require('axios')
 require("dotenv").config()
-const apiKey = process.env.OPENAI_API_KEY
+console.log(process.env)
+console.log(process.env.OPENAI_API_KEY)
+console.log(configuration)
 
 const openai = new OpenAIApi(configuration);
 
-const completion = await openai.createCompletion({
-  model: "text-davinci-003",
-  //prompt: "Hello world",
-}, prompt);
-
-const get_respURL = async (latlon) => {
-    let url = 'https://api.openai.com/v1/engines/davinci-codex/completions'+ 'Bearer' + process.env.OPENAI_API_KEY
-                latlon.y+","+latlon.x
-    const response = await axios.get(url)
-    return response.data.properties.forecast
+const get_resp = async (prompt) => {
+                const completion = await openai.createCompletion({
+                    model: "text-davinci-003",
+                    prompt: "Use the following as inspiration to write a shakesperean sonnet: " + prompt,
+                  });
+    return completion.data.choices[0].text
   }
 
 isLoggedIn = (req,res,next) => {
@@ -44,7 +42,7 @@ router.post('/gpt',
   async (req,res,next) => {
     console.log('getting response')
     res.locals.prompt = req.body.prompt
-    res.locals.resp = await completion(req.body.prompt)
+    res.locals.resp = await get_resp(req.body.prompt)
     res.render('resp')
 }
 )
